@@ -1,0 +1,11 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+{% block content %}
+    <form action="{% url 'sichuaninfo_mall_delete_urlpattern' pk=mall.pk %}" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{ mall }}?</p>
+        <input type="hidden" name="pk" value="{{ mall.pk }}">
+        <button type="submit">Delete</button>
+        <button type="button" onclick="window.history.go(-1);">Cancel</button>
+    </form>
+{% endblock %}

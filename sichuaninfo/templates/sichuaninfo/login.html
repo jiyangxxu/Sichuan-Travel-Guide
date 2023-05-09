@@ -1,0 +1,14 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h3>Login</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button button-primary"
+            style="background-color: white; color: black;
+            border: 1px solid black; padding: 5px;">Login</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+{% block content %}
+    {% if perms.sichuaninfo.view_localfav %}
+    <style>
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    table td {
+      vertical-align: top;
+    }
+
+</style>
+
+    <h2>{{ localfav }}</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+        <li style="margin: 15px;">
+            <a href="{{ localfav.get_update_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Edit Local Favorite
+            </a>
+        </li>
+        <li style="margin: 15px;">
+            <a href="{{ localfav.get_delete_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Delete Local Favorite
+            </a>
+        </li>
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <td>{{ localfav.attraction_name }}</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ localfav.attraction_address|urlencode }}"> {{ localfav.attraction_address }} </a>
+                </td>
+            </tr>
+
+            {% if localfav.attraction_tel %}
+            <tr>
+                <th>Phone Number:</th>
+                <td>{{ localfav.attraction_tel }}</td>
+            </tr>
+            {% endif %}
+
+            {% if localfav.attraction_cost %}
+            <tr>
+                <th>Average Cost/Person:</th>
+                <td>{{ localfav.attraction_cost }}</td>
+            </tr>
+            {% endif %}
+
+            {% if localfav.attraction_website %}
+            <tr>
+                <th>Website:</th>
+                <td><a href="{{ localfav.attraction_website }}">{{ localfav.attraction_website }}</a></td>
+            </tr>
+        {% endif %}
+
+
+            <tr>
+                <th>Introduction:</th>
+                <td>{{ localfav.attraction_introduction }}</td>
+            </tr>
+
+        </table>
+    </section>
+
+    {% endif %}
+
+{% endblock %}

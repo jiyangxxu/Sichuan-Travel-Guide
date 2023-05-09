@@ -1,0 +1,1372 @@
+{% load static %}
+{% block title %}
+{% if perms.sichuaninfo.view_city %}
+{% if city %}
+<h1> {{ city.city_name }} </h1>
+{% else %}
+City
+<p>Please select a city from the list.</p>
+{% endif %}
+    {% endif %}
+{% endblock %}
+
+{% if perms.sichuaninfo.view_city %}
+
+{% block content %}
+<style>
+.btn img {
+display: block;
+margin: 10px auto;
+width: 600px;
+height: 400px;
+}
+.btn p {
+text-align: center;
+margin: 5px;
+}
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: 25px;
+    line-height: 1.5;
+}
+
+li {
+    list-style-type: none;
+}
+
+img {
+  border-radius: 5%;
+}
+
+
+</style>
+
+    <li>
+        {% if city.city_name == '成都Chengdu' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="https://64.media.tumblr.com/d59cf9bee6c185d9501a275ab5c5ad65/5c01d754a8662f94-32/s500x750/e022c39c00b6f3a81bbf279ac6a412e0bcc4b0c2.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2 style="font-weight: bold;">Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Panda Huahua</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "15%";
+              tooltip.style.left = "50%";
+              tooltip.style.transform = "translateX(-50%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+              tooltip.style.width = "700px"
+              tooltip.style.whiteSpace = "nonwrap";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+
+
+    {% if city.city_name == '眉山Meishan' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="https://images.unsplash.com/photo-1652424977373-7d0c342e9e7c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 30%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Wuwu Mountain</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+        {% if city.city_name == '乐山Leshan' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7248.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Emeishan Golden Peak</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+
+        {% if city.city_name == '自贡ZiGong' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7247.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Zigong Salt Industry History Museum</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+            {% if city.city_name == '泸州Luzhou' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7245.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Sanxingdui Museum</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == '德阳Deyang' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="https://images.unsplash.com/photo-1592393357142-6eb29755f0fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1474&q=80"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Sanxingdui Museum</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == '绵阳Mianyang' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7244.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Yue Wang Building</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == '广元Guangyuan' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7243.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Tian Yi Valley</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == '遂宁Suining' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7241.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Song Porcelain Museum</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == '内江Neijiang' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7238.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Shengshui Temple</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == '南充Nanchong' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7237.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Xishan Scenic Area</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+
+
+            {% if city.city_name == '宜宾Yibin' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7236.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;"> Huiguang Temple</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+    {% if city.city_name == '达州Dazhou' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7234.JPG"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;"> Long Tan River</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+            {% if city.city_name == "广安Guang'an" %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7235.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;"> Guang'an</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+    {% if city.city_name == "雅安Ya'an" %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7233.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;"> Niubei Mountain</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+
+    {% if city.city_name == '巴中BaZhong' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7231.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Bazhong Gargoyle Statue</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+        {% if city.city_name == '资阳ZiYang' %}
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                    <a href="{% url 'sichuaninfo_attraction_list_urlpattern' pk=city.pk %}">
+                        <img id="city-image" src="/static/IMG_7249.jpg"
+                             alt="Panda Huahua" style="width: 100%; height: 100%;">
+                        <div style="position: absolute; top: 100%; left: 50%; text-align: center; color: white; font-size: 2em; display: none;">
+                            <br>
+                            <h2>Tourist Attraction</h2>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Wangxian Valley</div>
+                </div>
+            </div>
+            <style>
+                div:hover span {
+                    opacity: 0;
+                }
+                div:hover img {
+                    opacity: 0.7;
+                }
+                #tooltop:hover + #city-image {
+                    display: block;
+                }
+            </style>
+
+            <script>
+              // Get the image element
+              var cityImage = document.getElementById("city-image");
+              // Get the content of the attraction_list template
+              var attractionListContent = `{% include 'sichuaninfo/attraction_list.html' %}`;
+              attractionListContent = `<div style="font-size: 40px; line-height: 1.5em;">${attractionListContent}</div>`;
+              // Create the tooltip element
+              var tooltip = document.createElement("div");
+              tooltip.innerHTML = attractionListContent;
+
+
+              tooltip.style.display = "none";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "60%";
+              tooltip.style.left = "50%";
+              tooltip.style.width = "700";
+              tooltip.style.transform = "translate(-50%, -70%)";
+              tooltip.style.padding = "30px";
+              tooltip.style.backgroundColor = "transparent";
+              tooltip.style.border = "transparent";
+              tooltip.style.borderRadius = "10px";
+              tooltip.style.boxShadow = "0 0 10px rgba(5, 0, 5, 0)";
+
+
+              // Add the tooltip to the document body
+              document.body.appendChild(tooltip);
+              // Show the tooltip when the mouse is over the image
+              cityImage.addEventListener("mouseenter", function() {
+                tooltip.style.display = "block";
+              });
+              tooltip.addEventListener("mouseout", function() {
+                  tooltip.style.display = "none";
+              });
+              cityImage.addEventListener("mouseleave", function() {
+                  tooltip.style.display = "none";
+              });
+            </script>
+
+        {% endif %}
+
+
+    </li>
+
+
+    <li>
+
+        {% if city.city_name != '眉山Meishan' %}
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="list-style: none;">
+                    <a href="{% url 'sichuaninfo_hotel_list_urlpattern' pk=city.pk %}">
+                        <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                            <img id="city-image" src="https://pix8.agoda.net/hotelImages/926/926423/926423_16052710060042784034.jpg?ca=13&ce=1&s=1024x768"
+                                 alt="Six Senses Qing Cheng Mountain Hotel" style="margin: auto; width: 100%; height: 100%;">
+                            <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em;">
+                                <h2>Hotel</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Sixa Senses Qing Cheng Mountain Hotel</div>
+                    <style>
+                        div:hover span {
+                            opacity: 0;
+                        }
+                        div:hover img {
+                            opacity: 0.7;
+                        }
+                    </style>
+                </div>
+            </div>
+        {% endif %}
+
+    {% if city.city_name == '眉山Meishan' %}
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="list-style: none;">
+                    <a href="{% url 'sichuaninfo_hotel_list_urlpattern' pk=city.pk %}">
+                        <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                            <img id="city-image" src="https://pix8.agoda.net/hotelImages/338/338599/338599_14080118030020637279.jpg?ca=2&ce=1&s=1024x768"
+                                 alt="InterContinental Heilong Lake" style="margin: auto; width: 100%; height: 100%;">
+                            <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em;">
+                                <h2>Hotel</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">InterContinental Heilong Lake</div>
+                    <style>
+                        div:hover span {
+                            opacity: 0;
+                        }
+                        div:hover img {
+                            opacity: 0.7;
+                        }
+                    </style>
+                </div>
+            </div>
+        {% endif %}
+
+    </li>
+
+
+    <li>
+    {% if city.city_name != '眉山Meishan' %}
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="list-style: none;">
+                    <a href="{% url 'sichuaninfo_restaurant_list_urlpattern' pk=city.pk %}">
+                        <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                            <img id="city-image" src="https://seopic.699pic.com/photo/50021/5741.jpg_wh1200.jpg"
+                                 alt="Chengdu Hotpot" style="margin: auto; width: 100%; height: 100%;">
+                            <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em;">
+                                <h2>Restaurant</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Chengdu Hotpot</div>
+                    <style>
+                        div:hover span {
+                            opacity: 0;
+                        }
+                        div:hover img {
+                            opacity: 0.7;
+                        }
+                    </style>
+                </div>
+            </div>
+        {% endif %}
+    </li>
+
+            <li>
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="list-style: none;">
+                    <a href="{% url 'sichuaninfo_cuisine_list_urlpattern' pk=city_pk %}">
+                        <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                            <img id="city-image" src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                 alt="Sichuan province, China" style="margin: auto; width: 100%; height: 100%;">
+                            <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em;">
+                                <h2>Cuisine</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="text-align: center;"> Sichaun Peppercorns Powder </div>
+                    <style>
+                        div:hover span {
+                            opacity: 0;
+                        }
+                        div:hover img {
+                            opacity: 0.7;
+                        }
+                    </style>
+                </div>
+            </div>
+    </li>
+
+
+    <li>
+    {% if city.city_name == '眉山Meishan' %}
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="list-style: none;">
+                    <a href="{% url 'sichuaninfo_restaurant_list_urlpattern' pk=city.pk %}">
+                        <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                            <img id="city-image" src="https://www.internationalcuisine.com/wp-content/uploads/2015/01/pork-belly-1024x683.jpg"
+                                 alt="Dongpo Pork" style="margin: auto; width: 100%; height: 100%;">
+                            <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em;">
+                                <h2>Restaurant</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="text-align: center;">Dongpo Pork</div>
+                    <style>
+                        div:hover span {
+                            opacity: 0;
+                        }
+                        div:hover img {
+                            opacity: 0.7;
+                        }
+                    </style>
+                </div>
+            </div>
+        {% endif %}
+    </li>
+
+
+        <li>
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="list-style: none;">
+                    <a href="{% url 'sichuaninfo_route_list_urlpattern' pk=city_pk %}">
+                        <div style="position: relative; width: 840px; height: 560px; margin: 20px;">
+                            <img id="city-image" src="https://cdn.britannica.com/84/130884-050-B1CEE873/Sichuan-province-China.jpg"
+                                 alt="Sichuan province, China" style="margin: auto; width: 100%; height: 100%;">
+                            <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); text-align: center; color: white; font-size: 2em;">
+                                <h2>Route</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="text-align: center;"> Sichuan province, China </div>
+                    <style>
+                        div:hover span {
+                            opacity: 0;
+                        }
+                        div:hover img {
+                            opacity: 0.7;
+                        }
+                    </style>
+                </div>
+            </div>
+    </li>
+
+    <h2>Introduction</h2>
+    <p>{{ city.city_intro }}</p>
+
+
+    {% endblock %}
+    {% endif %}
+
+
+
+
+

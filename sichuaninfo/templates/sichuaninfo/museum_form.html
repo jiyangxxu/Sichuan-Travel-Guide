@@ -1,0 +1,16 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+{% block title %}
+    Create Museum
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{% url 'sichuaninfo_museum_create_urlpattern' %}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+        <button type="button" onclick="window.history.go(-1);">Cancel</button>
+    </form>
+{% endblock %}

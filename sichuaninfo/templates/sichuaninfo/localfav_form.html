@@ -1,0 +1,15 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+{% block title %}
+    Create Local Favorite
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{% url 'sichuaninfo_localfav_create_urlpattern' %}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Local Favorite</button>
+    </form>
+{% endblock %}

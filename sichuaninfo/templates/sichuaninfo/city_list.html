@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+
+        header h2 {
+            font-size: 65px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+        }
+
+        header {
+          position: relative;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 35%;
+          background-image: url('https://images.unsplash.com/photo-1604756904189-117de3259294?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          color: white;
+            padding: 360px 15px;
+          z-index: 1;
+          transition: all 1s ease-in-out;
+        }
+
+        .button-login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+          display: inline-block;
+          border-radius: 3px;
+          border: none;
+          color: #FFFFFF;
+          text-align: center;
+          font-size: 15px;
+          padding: 15px;
+          width: 100px;
+          transition: all 0.4s;
+          cursor: pointer;
+          margin: 5px;
+          background-color: white;
+          z-index: 9999;
+        }
+
+
+        main {
+          margin-top: 100px;
+          padding: 50px;
+            padding-bottom: 300px;
+        }
+
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        li:hover a {
+        background-color: lightgrey;
+        color: white;
+        }
+
+        .button {
+          display: inline-block;
+          border-radius: 3px;
+          border: none;
+          color: #FFFFFF;
+          text-align: center;
+          font-size: 15px;
+          padding: 15px;
+          width: 100px;
+          transition: all 0.5s;
+          cursor: pointer;
+          margin: 5px;
+            background-color: white;
+        }
+
+        .button:hover {
+          background-color: lightgrey;
+        }
+
+        .button span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+        }
+
+        .button span:after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+        }
+
+        .button:hover span {
+          padding-right: 20px;
+        }
+
+        .button:hover span:after {
+          opacity: 1;
+          right: 0;
+        }
+
+        .inline {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .inline li {
+        margin: 0 10px;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          transition: all 1s ease-in-out;
+        }
+
+        img.shrink {
+          transform: scale(0.5);
+          transform-origin: center center;
+        }
+
+        img.shrink-up {
+          transform: scaleY(0.5);
+          transform-origin: bottom center;
+        }
+
+        header.shrink {
+          padding: 0;
+        }
+
+        body {
+          margin: 0;
+          padding: 0;
+        }
+
+        .bottom-right-image {
+            float: right;
+            margin-top: 100px;
+            margin-right: 0px;
+          position: static;
+          bottom: 20px;
+          width: 200px;
+          height: 200px;
+          z-index: 9999;
+          background-image: url('https://img.freepik.com/premium-vector/cute-panda-wall-cartoon_42750-675.jpg?w=1380');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center center;
+        }
+
+
+
+    </style>
+
+
+<script>
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('header');
+      var img = document.querySelector('img');
+      var computedStyle = window.getComputedStyle(header);
+
+      if (header && computedStyle.getPropertyValue('background-image') !== 'none' && window.scrollY > 0) {
+        header.classList.add('shrink');
+        img.classList.add('shrink');
+        img.classList.add('shrink-up');
+      } else {
+        header.classList.remove('shrink');
+        img.classList.remove('shrink');
+        img.classList.remove('shrink-up');
+      }
+    });
+
+</script>
+
+
+
+
+<body>
+
+<header>
+  <h2>Sichuan Travel Guide</h2>
+</header>
+
+
+<main>
+
+<div>
+    <nav>
+      <ul style="list-style-type: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap;">
+      <li style="margin: 5px;">
+
+          {% if perms.sichuaninfo.view_city %}
+      <a href="{% url 'sichuaninfo_city_list_urlpattern'%}"
+             class="button" style="text-decoration: none; color: black;
+             border: 1px solid black; padding: 10px;"><span> 主页Home </span></a>
+          {% endif %}
+      </li>
+
+      {% if perms.sichuaninfo.view_city %}
+        {% for city in city_list %}
+        <li style="margin: 5px;">
+
+          <a href="{% url 'sichuaninfo_city_detail_urlpattern' pk=city.pk %}"
+             class="button" style="text-decoration: none; color: black;
+             border: 1px solid black; padding: 10px;"><span>{{ city }}</span></a>
+
+        </li>
+        {% endfor %}
+      {% endif %}
+      </ul>
+    </nav>
+
+{% if user.is_authenticated %}
+    <ul class="inline">
+            <a href="{% url 'logout_urlpattern' %}" class="button-login" style="text-decoration: none; color: black; background: white;
+            border: 1px solid black; padding: 5px;">
+                <span>Log Out, {{ user.get_username }}</span>
+            </a>
+    </ul>
+{% else %}
+    <ul class="inline">
+            <a href="{% url 'login_urlpattern' %}" class="button-login" style="text-decoration: none; color: black; background: white;
+            border: 1px solid black; padding: 5px;">
+                <span>Log In</span>
+            </a>
+    </ul>
+
+{% endif %}
+
+</div>
+
+    {% block content %}
+        {% block introduction %}
+        <p> Sichuan (四川) is a province in Southwest China occupying most of the Sichuan Basin and the easternmost part of the Tibetan Plateau between the Jinsha River on the west, the Daba Mountains in the north and the Yungui Plateau to the south. Sichuan's capital city is Chengdu. The population of Sichuan stands at 83 million. Sichuan neighbors Qinghai to the northwest, Gansu to the north, Shaanxi to the northeast, Chongqing to the east, Guizhou to the southeast, Yunnan to the south, and the Tibet Autonomous Region to the west.
+In antiquity, Sichuan was the home of the ancient state of Ba and the ancient kingdom of Shu. Their conquest by Qin strengthened it and paved the way for Qin Shi Huang's unification of China under the Qin dynasty. During the Three Kingdoms era, Liu Bei's state of Shu was based in Sichuan. The area was devastated in the 17th century by Zhang Xianzhong's rebellion and the area's subsequent Manchu conquest, but recovered to become one of China's most productive areas by the 19th century. During World War II, Chongqing served as the temporary capital of the Republic of China, making it the focus of the Japanese bombing. It was one of the last mainland areas captured by the People's Liberation Army during the Chinese Civil War and was divided into four parts from 1949 to 1952, with Chongqing restored two years later. It suffered gravely during the Great Chinese Famine of 1959–61 but remained China's most populous province until Chongqing Municipality was again separated from it in 1997.
+The Han Chinese people of Sichuan speak distinctive Sichuanese dialects of Mandarin Chinese. The spicy Sichuan pepper is prominent in modern Sichuan cuisine, featuring dishes—including Kung Pao chicken and mapo tofu—that have become staples of Chinese cuisine around the world.
+Sichuan is the 6th-largest provincial economy of China, the largest in Western China and the second largest among inland provinces after Henan. As of 2021, its nominal GDP was 5,385 billion yuan (US$847.68 billion), ahead of the GDP of Turkey of 815 billion. Compared to a country, it would be the 18th-largest economy as well as the 19th most populous as of 2021.
+There are many panda stations in the province and large reserves for these creatures, such as the Chengdu Research Base of Giant Panda Breeding.
+        </p>
+        {% endblock %}
+    {% endblock %}
+
+<div class="bottom-right-image"></div>
+
+</main>
+
+
+<footer>
+    <p>&copy;Jiyang Xu; 2023</p>
+</footer>
+
+</body>
+</html>
+
+

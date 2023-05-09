@@ -1,0 +1,12 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+{% block content %}
+    <form
+        action="{{ restaurant.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+        <button type="button" onclick="window.history.go(-1);">Cancel</button>
+    </form>
+{% endblock %}

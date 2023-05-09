@@ -1,0 +1,113 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+
+{% block content %}
+
+    {% if perms.sichuaninfo.view_restaurant %}
+
+    <style>
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    table td {
+      vertical-align: top;
+    }
+
+</style>
+
+    <h2>{{ restaurant }}</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+        <li style="margin: 15px;">
+            <a href="{{ restaurant.get_update_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Edit Restaurant
+            </a>
+        </li>
+        <li style="margin: 15px;">
+            <a href="{{ restaurant.get_delete_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Delete Restaurant
+            </a>
+        </li>
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <td>{{ restaurant.restaurant_name }}</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ restaurant.attraction_address|urlencode }}">
+                    {{ restaurant.restaurant_address }} </a>
+                </td>
+            </tr>
+
+            {% if restaurant.restaurant_tel %}
+            <tr>
+                <th>Phone Number:</th>
+                <td>{{ restaurant.restaurant_tel }}</td>
+            </tr>
+            {% endif %}
+
+            {% if restaurant.cost %}
+            <tr>
+                <th>Average Cost/Person:</th>
+                <td>{{ restaurant.cost }}</td>
+            </tr>
+            {% endif %}
+
+            <tr>
+                <th>History and Introduction:</th>
+                <td>{{ restaurant.restaurant_history }}</td>
+            </tr>
+
+        </table>
+    </section>
+
+    <section>
+        <h3>Served Cuisines:</h3>
+
+        {% if cuisine_list|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for i in cuisine_list %}
+                    <li style="margin: 15px;">
+                        <a href="{{ i.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ i }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no served cuisines for this restaurant.</em></p>
+        {% endif %}
+    </section>
+
+    {% endif %}
+
+{% endblock %}

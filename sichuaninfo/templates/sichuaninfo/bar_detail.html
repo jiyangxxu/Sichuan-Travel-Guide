@@ -1,0 +1,121 @@
+
+{% extends 'sichuaninfo/city_list.html' %}
+
+
+{% block content %}
+    {% if perms.sichuaninfo.view_bar %}
+<style>
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    table td {
+      vertical-align: top;
+    }
+
+</style>
+
+    {% if perms.sichuaninfo.view_bar %}
+    <h2>{{ bar }}</h2>
+    {% endif %}
+
+
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+        <li style="margin: 15px;">
+            {% if perms.sichuaninfo.change_bar %}
+            <a href="{{ bar.get_update_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Edit Bar
+            </a>
+            {% endif %}
+        </li>
+
+        <li style="margin: 15px;">
+            {% if perms.sichuaninfo.delete_bar %}
+            <a href="{{ bar.get_delete_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Delete Bar
+            </a>
+            {% endif %}
+        </li>
+    </ul>
+
+    <section>
+        <table>
+        {% if perms.sichuaninfo.view_bar %}
+            <tr>
+                <th>Name:</th>
+                <td>{{ bar.attraction_name }}</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ bar.attraction_address|urlencode }}"> {{ bar.attraction_address }} </a>
+                </td>
+            </tr>
+
+            {% if bar.attraction_tel %}
+            <tr>
+                <th>Phone Number:</th>
+                <td>{{ bar.attraction_tel }}</td>
+            </tr>
+            {% endif %}
+
+            {% if bar.attraction_cost %}
+            <tr>
+                <th>Average Cost/Person:</th>
+                <td>{{ bar.attraction_cost }}</td>
+            </tr>
+        {% endif %}
+
+            {% if bar.attraction_website %}
+            <tr>
+                <th>Website:</th>
+                <td><a href="{{ bar.attraction_website }}">{{ bar.attraction_website }}</a></td>
+            </tr>
+        {% endif %}
+
+            {% if bar.suggest_duration %}
+            <tr>
+                <th>Suggest Duration:</th>
+                <td>{{ bar.suggest_duration }}</td>
+            </tr>
+        {% endif %}
+
+
+            <tr>
+                <th>Introduction:</th>
+                <td>{{ bar.attraction_introduction }}</td>
+            </tr>
+        {% endif %}
+
+        </table>
+    </section>
+
+
+    {% else %}
+    <p>Sorry, you do not have permission to view this content</p>
+    {% endif %}
+
+{% endblock %}

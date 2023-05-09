@@ -1,0 +1,253 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+
+{% block content %}
+    {% if perms.sichuaninfo.view_hotel %}
+    <style>
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    table td {
+      vertical-align: top;
+    }
+
+</style>
+
+
+    <h2>{{ hotel }}</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+    {% if perms.sichuaninfo.change_hotel %}
+        <li style="margin: 15px;">
+            <a href="{{ hotel.get_update_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Edit Hotel
+            </a>
+        </li>
+        {% endif %}
+
+    {% if perms.sichuaninfo.delete_hotel %}
+        <li style="margin: 15px;">
+            <a href="{{ hotel.get_delete_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Delete Hotel
+            </a>
+        </li>
+    {% endif %}
+    </ul>
+
+    <section>
+    {% if perms.sichuaninfo.view_hotel %}
+        <table>
+            <tr>
+                <th>Name:</th>
+                <td>{{ hotel.hotel_name }}</td>
+            </tr>
+
+            <tr>
+                <th>Address:</th>
+                <td>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ hotel.hotel_address|urlencode }}"> {{ hotel.hotel_address }} </a>
+                </td>
+            </tr>
+
+            {% if hotel.attraction_tel %}
+            <tr>
+                <th>Phone Number:</th>
+                <td>{{ hotel.attraction_tel }}</td>
+            </tr>
+            {% endif %}
+
+            {% if hotel.hotel_cost_per_night %}
+            <tr>
+                <th>Average Cost/Night:</th>
+                <td>{{ hotel.hotel_cost_per_night }}</td>
+            </tr>
+            {% endif %}
+
+            {% if hotel.attraction_website %}
+            <tr>
+                <th>Website:</th>
+                <td><a href="{{ hotel.attraction_website }}">{{ hotel.attraction_website }}</a></td>
+            </tr>
+        {% endif %}
+
+            <tr>
+                <th>Introduction:</th>
+                <td>{{ hotel.introduction }}</td>
+            </tr>
+
+        </table>
+    </section>
+
+    {% endif %}
+
+    <section>
+
+    {% if perms.sichuaninfo.view_bar %}
+        <h3>Nearby Bars:</h3>
+
+        {% if bar|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for b in bar %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ b }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no bars nearby this hotel.</em></p>
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if perms.sichuaninfo.view_localfav %}
+       <h3>Nearby Local Favorites:</h3>
+
+        {% if localfav|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for localfav in localfav %}
+                    <li style="margin: 15px;">
+                        <a href="{{ localfav.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ localfav }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no local favorites nearby this hotel.</em></p>
+        {% endif %}
+
+    {% endif %}
+
+    {% if perms.sichuaninfo.view_mall%}
+        <h3>Nearby Malls:</h3>
+
+        {% if mall_list|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); grid-gap: 20px;">
+                {% for mall in mall_list %}
+                    <li style="margin: 0;">
+                        <a href="{{ mall.get_absolute_url }}" style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px; display: block;">
+                            {{ mall }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no malls nearby this hotel.</em></p>
+        {% endif %}
+    {% endif %}
+
+
+    {% if perms.sichuaninfo.view_monument %}
+       <h3>Nearby Monuments:</h3>
+
+        {% if monument|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for m in monument %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ m }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no monuments nearby this hotel.</em></p>
+        {% endif %}
+    {% endif %}
+
+
+    {% if perms.sichuaninfo.view_museum %}
+
+        <h3>Nearby Museums:</h3>
+
+        {% if museum|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for m in museum %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ m }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no museums nearby this hotel.</em></p>
+        {% endif %}
+    {% endif %}
+
+
+    {% if perms.sichuaninfo.view_restaurant %}
+        <h3>Nearby Restaurants:</h3>
+
+        {% if restaurant|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for r in restaurant %}
+                    <li style="margin: 15px;">
+                        <a href="{{ r.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ r }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no restaurants nearby this hotel.</em></p>
+        {% endif %}
+
+    {% endif %}
+
+
+    {% if perms.sichuaninfo.view_zoo %}
+       <h3>Nearby Zoos:</h3>
+
+        {% if zoo|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for z in zoo %}
+                    <li style="margin: 15px;">
+                        <a href="{{ z.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ z }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no zoos nearby this hotel.</em></p>
+        {% endif %}
+    {% endif %}
+
+    </section>
+
+    {% endif %}
+
+{% endblock %}

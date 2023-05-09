@@ -1,0 +1,101 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+
+{% block content %}
+
+    {% if perms.sichuaninfo.view_museum %}
+
+    <style>
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    table td {
+      vertical-align: top;
+    }
+
+</style>
+
+    <h2>{{ museum }}</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+        <li style="margin: 15px;">
+            <a href="{{ museum.get_update_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Edit Museum
+            </a>
+        </li>
+        <li style="margin: 15px;">
+            <a href="{{ museum.get_delete_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Delete Museum
+            </a>
+        </li>
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <td>{{ museum.attraction_name }}</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ museum.attraction_address|urlencode }}"> {{ museum.attraction_address }} </a>
+                </td>
+            </tr>
+
+            {% if museum.attraction_tel %}
+            <tr>
+                <th>Phone Number:</th>
+                <td>{{ museum.attraction_tel }}</td>
+            </tr>
+            {% endif %}
+
+            {% if museum.attraction_cost %}
+            <tr>
+                <th>Ticket/Person:</th>
+                <td>{{ museum.attraction_cost }}</td>
+            </tr>
+        {% endif %}
+
+        {% if museum.attraction_website %}
+            <tr>
+                <th>Website:</th>
+                <td><a href="{{ museum.attraction_website }}">{{ museum.attraction_website }}</a></td>
+            </tr>
+        {% endif %}
+
+
+            <tr>
+                <th>Introduction:</th>
+                <td>{{ museum.attraction_introduction }}</td>
+            </tr>
+
+        </table>
+    </section>
+
+    {% endif %}
+
+{% endblock %}

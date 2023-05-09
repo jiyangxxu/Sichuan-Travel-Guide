@@ -1,0 +1,58 @@
+{#{% extends 'sichuaninfo/city_list.html' %}#}
+
+<style>
+a {
+    color: white;
+    font-weight: bold;
+    text-underline: black;
+    border-bottom: 1px solid white;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+</style>
+
+{% if perms.sichuaninfo.view_city %}
+
+{% block title %}
+    <h2 style="font-weight: bold; color:black; font-size: 40px">Tourist Attraction for {{ city }}</h2>
+{% endblock %}
+
+{% block content %}
+    {% if perms.sichuaninfo.view_bar %}
+        <li><a href="{% url 'sichuaninfo_bar_list_urlpattern' pk=city.pk %}">
+            Bars</a></li>
+    {% endif %}
+
+    {% if perms.sichuaninfo.view_localfav %}
+        <li><a href="{% url 'sichuaninfo_localfav_list_urlpattern' pk=city.pk %}">
+            Local Favorites</a></li>
+    {% endif %}
+
+    {% if perms.sichuaninfo.view_mall %}
+        <li><a href="{% url 'sichuaninfo_mall_list_urlpattern' pk=city.pk %}">
+            Malls</a></li>
+    {% endif %}
+
+    {% if perms.sichuaninfo.view_monument %}
+        <li><a href="{% url 'sichuaninfo_monument_list_urlpattern' pk=city.pk %}">
+            Monuments</a></li>
+    {% endif %}
+
+    {% if perms.sichuaninfo.view_museum %}
+        <li><a href="{% url 'sichuaninfo_museum_list_urlpattern' pk=city.pk %}">
+            Museums</a></li>
+    {% endif %}
+
+    {% if perms.sichuaninfo.view_zoo %}
+        <li><a href="{% url 'sichuaninfo_zoo_list_urlpattern' pk=city.pk %}">
+            Zoos</a></li>
+    {% endif %}
+
+
+{% endblock %}
+
+    {% endif %}

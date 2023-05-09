@@ -1,0 +1,261 @@
+{% extends 'sichuaninfo/city_list.html' %}
+
+
+{% block content %}
+
+    {% if perms.sichuaninfo.view_route %}
+    <style>
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    table td {
+      vertical-align: top;
+    }
+
+</style>
+
+    <h2>{{ route }}</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+        <li style="margin: 15px;">
+            <a href="{{ route.get_update_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Edit Route
+            </a>
+        </li>
+        <li style="margin: 15px;">
+            <a href="{{ route.get_delete_url }}"
+            style="text-decoration: none; color: black;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;padding: 5px;">
+                Delete Route
+            </a>
+        </li>
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <td>{{ route.route_name }}</td>
+            </tr>
+            <tr>
+                <th>Detail:</th>
+                <td>{{ route.route_detail }}</td>
+            </tr>
+            <tr>
+                <th>Website:</th>
+                <td>{{ route.attraction_website }}</td>
+            </tr>
+            <tr>
+                <th>Introduction:</th>
+                <td>{{ route.attraction_introduction }}</td>
+            </tr>
+
+        </table>
+    </section>
+
+    <section>
+        <h3>Cities:</h3>
+
+        {% if city|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for b in city %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ b }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no cities planned for the route.</em></p>
+        {% endif %}
+
+
+        <h3>Bars:</h3>
+
+        {% if bar|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for b in bar %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ b }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no bars planned for the route.</em></p>
+        {% endif %}
+
+
+
+
+       <h3>Local Favorites:</h3>
+
+        {% if localfav|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for localfav in localfav %}
+                    <li style="margin: 15px;">
+                        <a href="{{ localfav.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ localfav }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no local favorites planned for the route.</em></p>
+        {% endif %}
+
+        <h3>Malls:</h3>
+
+        {% if mall_list|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); grid-gap: 20px;">
+                {% for mall in mall_list %}
+                    <li style="margin: 0;">
+                        <a href="{{ mall.get_absolute_url }}" style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px; display: block;">
+                            {{ mall }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no malls planned for the route.</em></p>
+        {% endif %}
+
+
+       <h3>Monuments:</h3>
+
+        {% if monument|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for m in monument %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ m }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no monuments planned for the route.</em></p>
+        {% endif %}
+
+
+        <h3>Museums:</h3>
+
+        {% if museum|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for m in museum %}
+                    <li style="margin: 15px;">
+                        <a href="{{ b.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ m }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no museums planned for the route.</em></p>
+        {% endif %}
+
+
+        <h3>Restaurants:</h3>
+
+        {% if restaurant|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for r in restaurant %}
+                    <li style="margin: 15px;">
+                        <a href="{{ r.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ r }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no restaurants planned for the route.</em></p>
+        {% endif %}
+
+
+       <h3>Zoos:</h3>
+
+        {% if zoo|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for z in zoo %}
+                    <li style="margin: 15px;">
+                        <a href="{{ z.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ z }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no zoos planned for the route.</em></p>
+        {% endif %}
+
+        <h3>Hotels:</h3>
+
+        {% if hotel|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for z in hotel %}
+                    <li style="margin: 15px;">
+                        <a href="{{ z.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ z }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no hotels planned for the route.</em></p>
+        {% endif %}
+
+
+        <h3>Restaurants:</h3>
+
+        {% if restaurant|length %}
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: grid; flex-wrap: wrap;">
+                {% for z in restaurant %}
+                    <li style="margin: 15px;">
+                        <a href="{{ z.get_absolute_url }}"
+                           style="text-decoration: none; color: black; border-bottom: 1px solid black; padding: 10px;">
+                            {{ z }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>There are currently no restaurants planned for the route.</em></p>
+        {% endif %}
+
+
+    </section>
+
+    {% endif %}
+
+{% endblock %}
